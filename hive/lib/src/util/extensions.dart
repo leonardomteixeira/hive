@@ -10,6 +10,11 @@ extension StringX on String {
     }
     return true;
   }
+
+  bool get isCleanOfSpecialCharacters {
+    final validCharacters = RegExp(r'^[a-zA-Z0-9]+$');
+    return validCharacters.hasMatch(this);
+  }
 }
 
 /// Not part of public API
@@ -18,10 +23,7 @@ extension ListIntX on List<int> {
   @pragma('vm:prefer-inline')
   @pragma('dart2js:tryInline')
   int readUint32(int offset) {
-    return this[offset] |
-        this[offset + 1] << 8 |
-        this[offset + 2] << 16 |
-        this[offset + 3] << 24;
+    return this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16 | this[offset + 3] << 24;
   }
 
   /// Not part of public API
